@@ -1,0 +1,22 @@
+{
+  "name": "pug-template",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/connect-livereload": "^0.6.3",
+    "@types/express": "^5.0.0",
+    "@types/livereload": "^0.9.5",
+    "livereload": "^0.9.3",
+    "connect-livereload": "^0.6.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "dev": "nodemon"
+  }
+}
