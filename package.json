@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pug": "^3.0.3"
   },
@@ -10,13 +12,16 @@
     "@types/connect-livereload": "^0.6.3",
     "@types/express": "^5.0.0",
     "@types/livereload": "^0.9.5",
-    "livereload": "^0.9.3",
     "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
     "nodemon": "^3.1.9",
+    "prettier": "^3.5.0",
+    "prettier-plugin-pug": "^1.0.0-alpha.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "format": "prettier --write \"src/**/*.{js,ts,json,css,md}\""
   }
 }
