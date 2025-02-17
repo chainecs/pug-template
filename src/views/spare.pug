@@ -6,85 +6,87 @@ html
     title Resource Usage Summary
 
   body
-  div(style="background-color: #f3f3ff; padding: 16px 0px;")
-    div(style="max-width: 595px; display: flex; justify-content: center; align-items: center; margin: 0 auto;")
-      div(style="padding: 32px 24px; display: flex; flex-direction: column; background-color: #ffffff; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #2A2C37; gap: 24px;")
-        div
-          img(
-                  src=logo || "https://space.nipa.cloud/assets/images/Logo-space.png" 
-                  alt="Nipa Cloud Logo" 
-                  title="Nipa Cloud Logo" 
-                  style="display:block; width: 150px;"
-                  width="150"
-                )
-        div Dear #{recipient_name || "Customer"},
-        div
-          | Attached is your 
-          strong #{billing_period || "01/JAN/25 - 01/FEB/25"} Cycle Report
-          | , which provides the cost associated with your resource usage for this cycle.
-        div Below is a summary of your resource usage and the total cost for this cycle.
-        div(style="display: flex; flex-direction: column; padding: 0px 16px; gap: 8px;")
-          div(style="font-weight:600; font-size: 16px;") Resource Usage Summary
-          div(style="display: flex; flex-direction: row; align-items:center")
-            div(style="width: 100px;")
-              strong Period
-            div 
-            | : #{billing_period || "01/JAN/25 to 01/FEB/25"}
-          div(style="display: flex; flex-direction: row; align-items:center")
-            div(style="width: 100px;")
-              strong Project ID
-            div 
-            | : #{project_id || "IDW985W6-3W73-11WW-WW56-0242WW120002"}
-          div(style="display: flex; flex-direction: row; align-items:center")
-            div(style="width: 100px;")
-              strong Project Name
-            div 
-            | : #{project_name|| "NAME TEST"}  
+div(style="background-color: #f3f3ff; padding: 16px 0;")
+  div(style="max-width: 595px; display: flex; justify-content: center; align-items: center; margin: 0 auto;")
+    div(style="padding: 32px 24px; display: flex; flex-direction: column; background-color: #ffffff; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #2A2C37; gap: 24px;")
+      div
+        img(
+                src=logo || "https://space.nipa.cloud/assets/images/Logo-space.png" 
+                alt="Nipa Cloud Logo" 
+                title="Nipa Cloud Logo" 
+                style="display:block; width: 150px;"
+                width="150"
+              )
+      div Dear #{recipient_name || "Customer"},
+      div
+        | Attached is your 
+        strong #{cycle_started_at} - #{cycle_end_at} Cycle Report
+        | , which provides the cost associated with your resource usage for this cycle.
+      div Below is a summary of your resource usage and the total cost for this cycle.
+      div(style="display: flex; flex-direction: column; padding: 0 16px; gap: 8px;")
+        div(style="font-weight:600; font-size: 16px;") Resource Usage Summary
+        div(style="display: flex; flex-direction: row; align-items:center")
+          div(style="width: 100px;")
+            strong Period
+          div 
+          | : #{cycle_started_at} to #{cycle_end_at}
+        div(style="display: flex; flex-direction: row; align-items:center")
+          div(style="width: 100px;")
+            strong Project ID
+          div 
+          | : #{project_id}
+        div(style="display: flex; flex-direction: row; align-items:center")
+          div(style="width: 100px;")
+            strong Project Name
+          div 
+          | : #{project_name}  
+      table(style="width: 100%; border-collapse: collapse;")
+        thead
+          tr(style="text-align: left; border-top: 1px solid #C5C7D3; border-bottom: 1px solid #E6E6EC; color:#8D91A6;")
+            th(style="padding: 8px 0;") Resource Type
+            th(style="padding: 8px 0; text-align: right;") Cost
+        tbody
+          - var resourceList = resources || []
+          if !resourceList || resourceList.length === 0
+            - resourceList = []
+            - resourceList.push({ name: "Compute Instance", price: 0 })
+            - resourceList.push({ name: "Volumes", price: 0 })
+            - resourceList.push({ name: "Snapshots", price: 0 })
+            - resourceList.push({ name: "External IPs", price: 0 })
+            - resourceList.push({ name: "Load Balancers", price: 0 })
+            - resourceList.push({ name: "Database Instance", price: 0 })
+            - resourceList.push({ name: "Object Storage", price: 0 })
+            - resourceList.push({ name: "International Bandwidth", price: 0 })
 
-        p(style="font-weight: bold; color: #888; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 20px;") Resource Usage Summary Table
-        table(style="width: 100%; border-collapse: collapse; margin-top: 10px;")
-          thead
-            tr(style="background-color: #f3f3ff; text-align: left;")
-              th(style="padding: 10px; border-bottom: 2px solid #ddd;") Resource
-              th(style="padding: 10px; border-bottom: 2px solid #ddd; text-align: right;") Price
-          tbody
-            - var resourceList = resources || []
-            if !resourceList || resourceList.length === 0
-              - resourceList = []
-              - resourceList.push({ name: "Compute Instance", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "Volumes", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "Snapshots", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "External IPs", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "Load Balancers", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "Database Instance", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "Object Storage", price: "000,000,000.000000 THB" })
-              - resourceList.push({ name: "International Bandwidth", price: "000,000,000.000000 THB" })
+          each item in resourceList
+            tr(style="border-bottom: 1px solid #ddd;")
+            td(style="padding: 8px 0;")= item.name
+            td(style="padding: 8px 0; text-align: right;") #{((item.price) / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
 
-            each item in resourceList
-              tr
-                td(style="padding: 10px; border-bottom: 1px solid #ddd;")= item.name
-                td(style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;")= item.price
+          - var total_price = Number(total_price) || 0
+          - var vat = total_price * 0.07
+          - var grand_total = total_price + Number(vat)
 
-            tr(style="font-weight: bold;")
-              td(style="padding: 10px; border-top: 2px solid #ddd;") Total
-              td(style="padding: 10px; border-top: 2px solid #ddd; text-align: right;") #{total_price || "000,000,000.000000 THB"}
+          tr
+            td(style="padding: 8px 0;") Total
+            td(style="padding: 8px 0; text-align: right;") #{(total_price / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
 
-            tr(style="font-weight: bold;")
-              td(style="padding: 10px;") VAT 7%
-              td(style="padding: 10px; text-align: right;") #{vat || "000,000,000.000000 THB"}
+          tr
+            td(style="padding: 8px 0;") VAT 7%
+            td(style="padding: 8px 0; text-align: right;") #{(vat / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
 
-            tr(style="font-weight: bold; font-size: 16px;")
-              td(style="padding: 10px;") Grand Total
-              td(style="padding: 10px; text-align: right;") #{grand_total || "000,000,000.000000 THB"}
+          tr(style="border-bottom: 1px solid #C5C7D3; font-weight: bold;")
+            td(style="padding: 8px 0;") Grand Total
+            td(style="padding: 8px 0; text-align: right;") #{(grand_total / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
 
-        p(style="margin-top: 20px;") For a complete breakdown, please refer to the attached report. For any questions or require further clarification, please feel free to contact us via 
-          a(href=`#` style="color: red;") Customer Support 
-          span  or 
-          span(style="font-weight: bold;")  082 6328 3030
-          span  or 
-          a(href=`#` style="color: red;") support@nipa.cloud
-        p(style="margin-top: 20px;") Best regards,
-        p(style="font-weight: bold;") Nipa Cloud Team
-        hr(style="border: 0; border-top: 1px solid #ddd; margin-top: 10px; margin-bottom: 10px;")
-        p(style="font-size: 12px; color: #888; margin-bottom: 5px; line-height: 18px;") NIPA Cloud does not request any personal information, such as a username or password. If you are contacted and asked for such information, please do not provide it and inform the NIPA Cloud team for your safety.
-        p(style="font-size: 12px; color: #888; font-weight: bold;") This is an automated email. No reply is required.
+      div(style="margin-top: 20px;") For a complete breakdown, please refer to the attached report. For any questions or require further clarification, please feel free to contact us via 
+        a(href=`#` style="font-weight: bold; color: #4959D1; text-decoration: none;") Customer Support 
+        span  or 
+        span(style="font-weight: bold;") +66 86 328 3030
+        span  or 
+        a(href=`#` style="font-weight: bold; color: #4959D1; text-decoration: none;") support@nipa.cloud
+      div(style="margin-top: 20px;") Best regards,
+      p(style="font-weight: bold;") Nipa Cloud Team
+      hr(style="border: 0; border-top: 1px solid #ddd; margin-top: 10px; margin-bottom: 10px;")
+      p(style="font-size: 12px; color: #888; margin-bottom: 5px; line-height: 18px;") NIPA Cloud does not request any personal information, such as a username or password. If you are contacted and asked for such information, please do not provide it and inform the NIPA Cloud team for your safety.
+      p(style="font-size: 12px; color: #888; font-weight: bold;") This is an automated email. No reply is required.
