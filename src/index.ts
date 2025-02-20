@@ -6,15 +6,16 @@ import {
   MessageGatewayService,
   Channel,
 } from "./message_gateway/MessageGatewayService";
+import cors from "cors";
 
 const app = express();
 const port = 3030;
 
-// สร้าง livereload server และกำหนดให้เฝ้าดูโฟลเดอร์ views
+app.use(cors());
+
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, "views"));
 
-// เมื่อ livereload server เริ่มเชื่อมต่อ ให้รีเฟรชเบราว์เซอร์
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
@@ -28,17 +29,17 @@ app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    logo: "https://space.nipa.cloud/assets/images/Logo-space.png",
+    logo: "https://space.nipa.cloud/assets/images/Logo-space-horizontal.png",
     recipient_name: "John Doe",
     wallet_type: "POSTPAID",
     cycle_started_at: "01 JAN 25",
     cycle_end_at: "31 FEB 25",
     project_id: "ioW985W6-3W73-11WW-WW56-0242WW120002",
     project_name: "test_project",
-    total_price: 2251234567,
-    vat: 2000467,
-    grand_total: 245467,
-    outstanding_balance: 34674670,
+    outstanding_amount: 34674670,
+    total_amount: 2251234567,
+    vat_amount: 2000467,
+    grand_total: 1000001,
     resources: [
       { name: "Compute Instance", price: 146787897746700 },
       { name: "Volumes", price: 54674670 },
@@ -54,24 +55,27 @@ app.get("/send", async (req, res) => {
       template: "WALLET_CYCLE_USAGE_REPORT",
       module: "(dev) Nipa Cloud Space",
       targets: {
-        [Channel.emails]: ["chonchanok@nipa.cloud, c.wongaphai@gmail.com"],
+        [Channel.emails]: [
+          "chonchanok@nipa.cloud, c.wongaphai@gmail.com, 6570049021@student.chula.ac.th",
+        ],
       },
       data: {
         subject: `Cycle Report - 01 JAN 25 - 31 FEB 25`,
-        logo: "https://space.nipa.cloud/assets/images/Logo-space.png",
+        logo: "https://space.nipa.cloud/assets/images/Logo-space-horizontal.png",
         recipient_name: "John Doe",
         wallet_type: "POSTPAID",
         cycle_started_at: "01 JAN 25",
         cycle_end_at: "31 FEB 25",
         project_id: "IDW985W6-3W73-11WW-WW56-0242WW120002",
         project_name: "test_project",
-        total_price: 2251234567,
-        vat: 2000000,
-        grand_total: 245000,
+        total_amount: 2251234567,
+        vat_amount: 2000000,
+        grand_total: 1000001,
         outstanding_balance: 30000000,
         resources: [
           { name: "Compute Instance", price: 100000000 },
           { name: "Volumes", price: 50000000 },
+          { name: "External IPs", price: 50000000 },
         ],
       },
     };

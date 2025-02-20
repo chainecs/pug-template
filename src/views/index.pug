@@ -20,10 +20,10 @@ html
           table(border="0" cellpadding="0" cellspacing="0" width="595")
             tr
               td(style="padding:32px 24px; background-color:#ffffff; font-size:14px; font-weight: 400px")
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
+                table(border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
                     td
-                      img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" style="display:block; width:150px;" width="150")
+                      img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" width="208" height="52" style="display:block; width:208px; height: 52px")
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
@@ -41,75 +41,74 @@ html
                   tr
                     td
                       | Below is a summary of your resource usage and the total cost for this cycle.
-                div(style="padding: 0 16px;")
+                div(style="padding: 0 16px;  margin-bottom: 24px;")
                   table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 16px;")
                     tr
                       td(colspan="2", style="font-weight:600; font-size:16px; padding-bottom:8px;")
                         | Resource Usage Summary
                     tr
-                      td(style="width:100px; font-weight:bold; padding-bottom:8px;") Period
+                      td(style="width:150px; font-weight:bold; padding-bottom:8px;") Period
                       td(style="padding-bottom:8px;")
                         | : #{cycle_started_at} to #{cycle_end_at}
                     tr
-                      td(style="width:100px; font-weight:bold; padding-bottom:8px;") Project ID
+                      td(style="width:150px; font-weight:bold; padding-bottom:8px;") Project ID
                       td(style="padding-bottom:8px;")
                         | : #{project_id}
                     tr
-                      td(style="width:100px; font-weight:bold;") Project Name
-                      td
-                        | : #{project_name}
+                      td(style="width:150px; font-weight:bold; padding-bottom:8px;") Project Name
+                      td(style="padding-bottom:8px;")
+                        | : #{project_name} (#{wallet_type})
+                    tr
+                      - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
+                      td(style="width:150px; font-weight:bold;") Outstanding Balance
+                      if outstanding_amount && outstanding_amount > 0
+                        td
+                          | : #{outStandingBalanceDisplay} THB
+                      else
+                        td
+                          | : -
 
-                  table(width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; margin-bottom: 24px;")
+                  table(width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;")
                     tbody
                       tr(style="text-align:left; border-top:1px solid #C5C7D3; border-bottom:1px solid #E6E6EC; color:#8D91A6;")
                         td(style="padding:8px 0;") Resource Type
                         td(style="padding:8px 0; text-align:right;") Cost
-                      - var resourceList = resources || []
-                      if !resourceList || resourceList.length === 0
-                        - resourceList = []
-                        - resourceList.push({ name: "Compute Instance", price: 0 })
-                        - resourceList.push({ name: "Volumes", price: 0 })
-                        - resourceList.push({ name: "Snapshots", price: 0 })
-                        - resourceList.push({ name: "External IPs", price: 0 })
-                        - resourceList.push({ name: "Load Balancers", price: 0 })
-                        - resourceList.push({ name: "Database Instance", price: 0 })
-                        - resourceList.push({ name: "Object Storage", price: 0 })
-                        - resourceList.push({ name: "International Bandwidth", price: 0 })
 
+                      - var resourceList = resources || []
+
+                      if !resourceList || resourceList.length === 0
+                        - resourceList.push({ name: "-", price: 0 })
+                  
                       each item in resourceList
-                        - var priceDisplay = (item.price/1000000).toLocaleString(undefined,{minimumFractionDigits:6, maximumFractionDigits:6})
-                        - var priceSplit = priceDisplay.split(".")
-                        - var priceInteger = priceSplit[0]
-                        - var priceDecimal = priceSplit[1]
+                        - var priceDisplay = (Math.ceil(item.price/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         tr(style="border-bottom:1px solid #E6E6EC;")
                           td(style="padding:8px 0;")= item.name
-                          td(style="padding:8px 0; text-align:right;") #{priceInteger}
-                            span(style="font-size:10px;") .#{priceDecimal} THB
-
+                          td(style="padding:8px 0; text-align:right; ") #{priceDisplay} THB
+                      
                       tr
+                        - var totalDisplay = (Math.ceil(total_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding:8px 0;") Total
-                        td(style="padding:8px 0; text-align:right;") #{(total_price/1000000).toLocaleString(undefined,{minimumFractionDigits:6, maximumFractionDigits:6})} THB
-
+                        td(style="padding:8px 0; text-align:right;") #{totalDisplay} THB
                       tr
+                        - var vatDisplay = (Math.ceil(vat_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding:8px 0;") VAT 7%
-                        td(style="padding:8px 0; text-align:right;") #{(vat/1000000).toLocaleString(undefined,{minimumFractionDigits:6, maximumFractionDigits:6})} THB
+                        td(style="padding:8px 0; text-align:right;") #{vatDisplay} THB
 
                       tr(style="border-bottom:1px solid #C5C7D3; font-weight:bold;")
+                        - var granTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding:8px 0;") Grand Total
-                        td(style="padding:8px 0; text-align:right;") #{(grand_total/1000000).toLocaleString(undefined,{minimumFractionDigits:6, maximumFractionDigits:6})} THB
+                        td(style="padding:8px 0; text-align:right;") #{granTotalDisplay} THB
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
                     td
                       | For a complete breakdown, please refer to the attached report. 
                       | For any questions or require further clarification, please feel free to contact us via 
-                      a(href="#")  
-                        strong(style="font-weight:bold; color:#4959D1; text-decoration:none;") Customer Support
+                      a(href="https://nipacloud.freshdesk.com/th/support/login" title="https://nipacloud.freshdesk.com/th/support/login" target="_blank" style="font-weight:600; color:#4959D1; text-decoration: none;") Customer Support
                       |  or 
                       strong(style="font-weight:bold;") +66 86 328 3030
                       |  or 
-                      a(href="#")
-                        strong(style="font-weight:bold; color:#4959D1; text-decoration:none;") support@nipa.cloud
+                      a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" style="font-weight:600; color:#4959D1; text-decoration: none;") support@nipa.cloud
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
@@ -145,4 +144,6 @@ html
                       | If you are asked to provide such information, please decline and inform us for your safety.
                   tr
                     td
-                      | Privacy Policy | Terms of Service
+                      a(href="https://nipa.cloud/privacy" title="Privacy Policy" target="_blank" style="color:#F9F9FC; text-decoration:none;") Privacy Policy
+                      |  |
+                      a(href="https://nipa.cloud/terms" title="Terms of Service" target="_blank" style="color:#F9F9FC; text-decoration:none;")  Terms of Service

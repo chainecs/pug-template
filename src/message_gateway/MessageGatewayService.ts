@@ -1,11 +1,10 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
+import axios from "axios";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 export class MessageGatewayService {
-  protected MESSAGE_GATEWAY_URL =
-    process.env.MESSAGE_GATEWAY_URL || 'http://localhost:3088';
+  protected MESSAGE_GATEWAY_URL = process.env.MESSAGE_GATEWAY_URL;
   private client = axios.create({
     baseURL: this.MESSAGE_GATEWAY_URL,
   });
@@ -19,24 +18,24 @@ export class MessageGatewayService {
       };
       data: { [key: string]: string | number | object[] };
     },
-    topic: string = 'Notifications'
+    topic: string = "Notifications"
   ) {
     try {
-      console.log('publishMessage', body);
+      console.log("publishMessage", body);
       const response = await this.client.post(
         `/v2/publish/${process.env.MESSAGE_TOPIC_PREFIX}_${topic}`,
         body
       );
       return response.data;
     } catch (error) {
-      console.error('[Error#publishMessage]', error);
+      console.error("[Error#publishMessage]", error);
       throw error;
     }
   }
 }
 
 export enum Channel {
-  emails = 'emails',
-  lines = 'lines',
-  mobiles = 'mobiles',
+  emails = "emails",
+  lines = "lines",
+  mobiles = "mobiles",
 }

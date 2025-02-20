@@ -69,7 +69,7 @@ VALUES
 
                   tr
                     td(style="padding: 8px 0;") Total
-                    td(style="padding: 8px 0; text-align: right;") #{(total_price / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
+                    td(style="padding: 8px 0; text-align: right;") #{(total_amount / 1000000).toLocaleString(undefined, {minimumFractionDigits: 6, maximumFractionDigits: 6})} THB
 
                   tr
                     td(style="padding: 8px 0;") VAT 7%
@@ -107,7 +107,7 @@ VALUES
       "project_id": [],
       "project_name": [],
       "resources": [],
-      "total_price": []
+      "total_amount": []
     }
   }',
   'email',
