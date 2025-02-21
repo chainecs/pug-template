@@ -1,5 +1,6 @@
 {
   "name": "pug-template",
+  "license": "MIT",
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {

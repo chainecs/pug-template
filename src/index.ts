@@ -7,9 +7,12 @@ import {
   Channel,
 } from "./message_gateway/MessageGatewayService";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const port = 3030;
+const port = process.env.PORT;
 
 app.use(cors());
 
@@ -29,7 +32,7 @@ app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    logo: "https://space.nipa.cloud/assets/images/Logo-space-horizontal.png",
+    logo: `${process.env.LOGO_URL}`,
     recipient_name: "John Doe",
     wallet_type: "POSTPAID",
     cycle_started_at: "01 JAN 25",
@@ -61,7 +64,7 @@ app.get("/send", async (req, res) => {
       },
       data: {
         subject: `Cycle Report - 01 JAN 25 - 31 FEB 25`,
-        logo: "https://space.nipa.cloud/assets/images/Logo-space-horizontal.png",
+        logo: `${process.env.LOGO_URL}`,
         recipient_name: "John Doe",
         wallet_type: "POSTPAID",
         cycle_started_at: "01 JAN 25",

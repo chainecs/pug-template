@@ -1,7 +1,4 @@
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export class MessageGatewayService {
   protected MESSAGE_GATEWAY_URL = process.env.MESSAGE_GATEWAY_URL;
