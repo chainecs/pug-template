@@ -74,7 +74,7 @@ app.get("/send", async (req, res) => {
         total_amount: 2251234567,
         vat_amount: 2000000,
         grand_total: 1000001,
-        outstanding_balance: 30000000,
+        outstanding_amount: 30000000,
         resources: [
           { name: "Compute Instance", price: 100000000 },
           { name: "Volumes", price: 50000000 },

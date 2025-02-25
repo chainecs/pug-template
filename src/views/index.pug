@@ -52,26 +52,26 @@ html
                       td(colspan="2", style="font-weight:600; font-size:16px; padding-bottom:8px;")
                         | Resource Usage Summary
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") Period
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Period
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{cycle_started_at} to #{cycle_end_at}
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") Project Name
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Project Name
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_name}
                         span(style="color:#8D91A6;")  (#{capitalizeFirstLetter(wallet_type)})    
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") Project ID
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Project ID
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_id}
                     tr
                       - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
-                      td(style="width:150px; font-weight:600;") Outstanding Balance
+                      td(style="width:144px; font-weight:600;") Outstanding Balance
                       if outstanding_amount && outstanding_amount > 0
-                        td
+                        td(style="padding-left:4px;")
                           | : #{outStandingBalanceDisplay} THB
                       else
-                        td
+                        td(style="padding-left:4px;")
                           | : -
 
                   table(width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;")
@@ -96,14 +96,14 @@ html
                         td(style="padding:8px 0;") Total
                         td(style="padding:8px 0; text-align:right;") #{totalDisplay} THB
                       tr
-                        - var vatDisplay = (Math.ceil(vat_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
+                        - var vatDisplay = ((vat_amount/10000)/100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
                         td(style="padding:8px 0;") VAT 7%
                         td(style="padding:8px 0; text-align:right;") #{vatDisplay} THB
 
                       tr(style="border-bottom:1px solid #C5C7D3; font-weight:600;")
-                        - var granTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
+                        - var grandTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding:8px 0;") Grand Total
-                        td(style="padding:8px 0; text-align:right;") #{granTotalDisplay} THB
+                        td(style="padding:8px 0; text-align:right;") #{grandTotalDisplay} THB
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
@@ -111,7 +111,7 @@ html
                       | For a complete usage breakdown, please check your billing history on the Billing & Wallet page on 
                       a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Portal
                       |  For any questions, please contact us via
-                      a(href="https://https://nipa.cloud/contact/technical" title="https://https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
+                      a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
                       | , 
                       strong(style="font-weight:600;")  +66 86 328 3030
                       |  or 
@@ -177,26 +177,26 @@ html
                       td(colspan="2", style="font-weight:600; font-size:16px; padding-bottom:8px;")
                         | สรุปการใช้ทรัพยากร
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") ช่วงเวลา
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") ช่วงเวลา
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{cycle_started_at} ถึง #{cycle_end_at}
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") ชื่อโปรเจ็กต์
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") ชื่อโปรเจ็กต์
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_name}
                         span(style="color:#8D91A6;")  (#{capitalizeFirstLetter(wallet_type)})
                     tr
-                      td(style="width:150px; font-weight:600; padding-bottom:8px;") ไอดีโปรเจ็กต์
-                      td(style="padding-bottom:8px;")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") ไอดีโปรเจ็กต์
+                      td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_id}
                     tr
                       - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
-                      td(style="width:150px; font-weight:600;") ยอดค้างชำระ
+                      td(style="width:144px; font-weight:600;") ยอดค้างชำระ
                       if outstanding_amount && outstanding_amount > 0
-                        td
+                        td(style="padding-left:4px;")
                           | : #{outStandingBalanceDisplay} THB
                       else
-                        td
+                        td(style="padding-left:4px;")
                           | : -
 
                   table(width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;")
@@ -221,14 +221,14 @@ html
                         td(style="padding:8px 0;") Total
                         td(style="padding:8px 0; text-align:right;") #{totalDisplay} THB
                       tr
-                        - var vatDisplay = (Math.ceil(vat_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
+                        - var vatDisplay = ((vat_amount/10000)/100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
                         td(style="padding:8px 0;") VAT 7%
                         td(style="padding:8px 0; text-align:right;") #{vatDisplay} THB
 
                       tr(style="border-bottom:1px solid #C5C7D3; font-weight:600;")
-                        - var granTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
+                        - var grandTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding:8px 0;") Grand Total
-                        td(style="padding:8px 0; text-align:right;") #{granTotalDisplay} THB
+                        td(style="padding:8px 0; text-align:right;") #{grandTotalDisplay} THB
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
@@ -236,7 +236,7 @@ html
                       | สำหรับรายละเอียดทั้งหมด โปรดตรวจสอบประวัติการเรียกเก็บเงินในหน้า Billing & Wallet บน 
                       a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Portal
                       |  หากมีคำถาม กรุณาติดต่อเราผ่านทาง
-                      a(href="https://https://nipa.cloud/contact/technical" title="https://https://nipa.cloud/contact/technical" target="_blank" class="link-font")  ฝ่ายสนับสนุนลูกค้า
+                      a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  ฝ่ายสนับสนุนลูกค้า
                       strong(style="font-weight:600;")  +66 86 328 3030
                       |  หรือ 
                       a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud
