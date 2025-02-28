@@ -46,6 +46,7 @@ app.get("/", (req, res) => {
     resources: [
       { name: "Compute Instance", price: 146787897746700 },
       { name: "Volumes", price: 54674670 },
+      { name: "External IPs", price: 0 },
     ],
   });
 });
@@ -78,7 +79,7 @@ app.get("/send", async (req, res) => {
         resources: [
           { name: "Compute Instance", price: 100000000 },
           { name: "Volumes", price: 50000000 },
-          { name: "External IPs", price: 50000000 },
+          { name: "External IPs", price: 0 },
         ],
       },
     };
