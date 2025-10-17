@@ -42,7 +42,7 @@ html
                     td
                       | Dear #{recipient_name || "Customer"}
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:16px;")
                   tr 
                     td(style="padding-bottom:8px;")
                       | A new resource usage cost summary is now available for your review.
@@ -50,7 +50,7 @@ html
                     td
                       | This email shows only the Pay-as-you-go pricing model. You will be charged only for the resources used in this cycle. To manage or review more details, please visit 
                       a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Space.
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:16px; font-size:12px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px; font-size:12px;")
                   tr 
                     td(style="padding-bottom:8px;")
                       | รายงานสรุปค่าใช้จ่าย Resource รอบใหม่พร้อมให้ตรวจสอบแล้ว
@@ -58,11 +58,12 @@ html
                     td
                       | อีเมลฉบับนี้ใช้รูปแบบการคิดค่าบริการแบบ Pay-as-you-go คุณจะถูกเรียกเก็บเงินเฉพาะ Resource ที่ใช้งานในรอบนี้เท่านั้น หากต้องการจัดการหรือตรวจสอบรายละเอียดเพิ่มเติม โปรดไปที่ 
                       a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Space.
-                div(style="padding: 0 16px;  margin-bottom: 24px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:8px; padding-top:16px; border-top:1px solid #E6E6EC;")  
+                  tr
+                    td(colspan="2", style="font-weight:600; font-size:16px;")
+                      | Resource Usage Summary
+                div(style="padding: 16px; border: 1px solid #E6E6EC; border-radius: 16px; margin-bottom:16px;")
                   table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 16px;")
-                    tr
-                      td(colspan="2", style="font-weight:600; font-size:16px; padding-bottom:8px;")
-                        | Resource Usage Summary
                     tr
                       td(style="width:144px; font-weight:600; padding-bottom:8px;") Period
                       td(style="padding-bottom:8px; padding-left:4px;")
@@ -112,34 +113,34 @@ html
                         td(style="padding:8px 0;") VAT 7%
                         td(style="padding:8px 0; text-align:right;") #{vatDisplay} THB
 
-                      tr(style="border-bottom:1px solid #C5C7D3; font-weight:600;")
+                      tr
                         - var grandTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
-                        td(style="padding:8px 0;") Grand Total
-                        td(style="padding:8px 0; text-align:right;") #{grandTotalDisplay} THB
+                        td(style="padding-top: 8px;") Grand Total
+                        td(style="padding-top: 8px; text-align:right;") #{grandTotalDisplay} THB
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top:16px; padding-bottom: 8px; border-top:1px solid #E6E6EC;")
                   tr
                     td
-                      | For a complete usage breakdown, please check your billing history on the Billing & Wallet page on 
-                      a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Space.
-                      |  For any questions, please contact us via
+                      | If you notice actions that appear to be unusual, please contact our 
                       a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
-                      | , 
-                      strong(style="font-weight:600;")  +66 86 328 3030
-                      |  or 
+                      |  +66 86 328 3030 or 
                       a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud
-                      | .
+                      | . Our team will investigate the issue as soon as possible.
+
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px;")
+                  tr
+                    td
+                      | หากคุณสังเกตุเห็นสิ่งที่คาดว่าอาจมีความผิดปกติ กรุณาติดต่อ 
+                      a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
+                      |  ของเราทันทีที่ +66 86 328 3030 หรือ 
+                      a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud
+                      |  และเราจะทำการตรวจสอบให้โดยเร็วที่สุด
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
-                    td
-                      | This report is based on Nipa Cloud’s Pay-as-you-go pricing model. Customers are charged based on actual usage, which may vary each cycle as shown in this report.
-
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
+                    td(style="padding-bottom:4px;") Best regards,
                   tr
-                    td
-                      div Best regards,
-                      div(style="color:#232C65; font-weight:500;") Nipa Cloud Space Team
+                    td(style="color:#232C65; font-weight:600;") Nipa Cloud Space Team
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #C5C7D3; margin-bottom:24px;")
                   tr
