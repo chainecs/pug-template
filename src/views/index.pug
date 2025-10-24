@@ -16,7 +16,6 @@ html
 
       .link-font {
         color: #4959D1;
-        text-decoration: none;
         font-weight: 600;
       }
 
@@ -29,35 +28,27 @@ html
     tr
       td
         center
-          table(border="0" cellpadding="0" cellspacing="0" width="595")
+          table(border="0" cellpadding="0" cellspacing="0" width="715")
             tr
-              td(style="padding:32px 24px; background-color:#ffffff; font-size:14px; font-weight: 400px")
-                table(border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
+              td(style="padding:36px 24px 16px 24px; background-color:#ffffff; font-size:14px; font-weight: 400px")
+                table(border="0" cellspacing="0" cellpadding="0" style="padding-bottom:12px;")
                   tr
                     td
                       img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" width="208" height="52" style="display:block; width:208px; height: 52px")
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:16px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top:12px; padding-bottom:16px;")
                   tr
                     td
                       | Dear #{recipient_name || "Customer"}
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:16px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px;")
                   tr 
-                    td(style="padding-bottom:8px;")
-                      | A new resource usage cost summary is now available for your review.
-                  tr
                     td
-                      | This email shows only the Pay-as-you-go pricing model. You will be charged only for the resources used in this cycle. To manage or review more details, please visit 
-                      a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Space.
+                      | The latest cycle report is now available.
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px; font-size:12px;")
                   tr 
-                    td(style="padding-bottom:8px;")
-                      | รายงานสรุปค่าใช้จ่าย Resource รอบใหม่พร้อมให้ตรวจสอบแล้ว
-                  tr
                     td
-                      | อีเมลฉบับนี้ใช้รูปแบบการคิดค่าบริการแบบ Pay-as-you-go คุณจะถูกเรียกเก็บเงินเฉพาะ Resource ที่ใช้งานในรอบนี้เท่านั้น หากต้องการจัดการหรือตรวจสอบรายละเอียดเพิ่มเติม โปรดไปที่ 
-                      a(href="https://space.nipa.cloud" title="https://space.nipa.cloud" target="_blank" class="link-font") Nipa Cloud Space.
+                      | รายงานสรุปค่าใช้จ่ายรอบล่าสุดพร้อมแล้ว
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:8px; padding-top:16px; border-top:1px solid #E6E6EC;")  
                   tr
                     td(colspan="2", style="font-weight:600; font-size:16px;")
@@ -82,7 +73,7 @@ html
                       td(style="width:144px; font-weight:600;") Outstanding Balance
                       if outstanding_amount && outstanding_amount > 0
                         td(style="padding-left:4px;")
-                          | : #{outStandingBalanceDisplay} THB
+                          | : #{outStandingBalanceDisplay} THC
                       else
                         td(style="padding-left:4px;")
                           | : -
@@ -117,24 +108,35 @@ html
                         - var grandTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding-top: 8px;") Grand Total
                         td(style="padding-top: 8px; text-align:right;") #{grandTotalDisplay} THB
+                table 
+                  tr 
+                    td(style="padding-bottom:8px;")
+                      | This report is based on Nipa Cloud’s pay-as-you-go pricing model. Projects are charged based on actual usage, which may vary each cycle as shown in this report.
+                  tr 
+                    td(style="font-size:12px; padding-bottom:16px;")
+                      | รายงานฉบับนี้แสดงการคิดค่าบริการ Pay-as-you-go โดยเป็นคิดค่าบริการตามการใช้งานจริง ซึ่งอาจผันแปรได้ในแต่ละรอบเดือน
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top:16px; padding-bottom: 8px; border-top:1px solid #E6E6EC;")
                   tr
                     td
-                      | If you notice actions that appear to be unusual, please contact our 
-                      a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
-                      |  +66 86 328 3030 or 
-                      a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud
-                      | . Our team will investigate the issue as soon as possible.
+                      | For any questions, please contact our 
+                      a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font") Customer Support
+                      |  at +66 86 328 3030 or 
+                      a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud.
+                  tr 
+                    td    
+                      |  Our team will get back to you as soon as possible.
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom:16px; font-size:12px;")
                   tr
                     td
-                      | หากคุณสังเกตุเห็นสิ่งที่คาดว่าอาจมีความผิดปกติ กรุณาติดต่อ 
+                      | หากต้องการสอบถามข้อมูลเพิ่มเติม กรุณาติดต่อ 
                       a(href="https://nipa.cloud/contact/technical" title="https://nipa.cloud/contact/technical" target="_blank" class="link-font")  Customer Support
                       |  ของเราทันทีที่ +66 86 328 3030 หรือ 
                       a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" class="link-font") support@nipa.cloud
-                      |  และเราจะทำการตรวจสอบให้โดยเร็วที่สุด
+                  tr    
+                    td
+                      |  และทีมของเราจะแจ้งกลับโดยเร็วที่สุด
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:24px;")
                   tr
@@ -142,7 +144,7 @@ html
                   tr
                     td(style="color:#232C65; font-weight:600;") Nipa Cloud Space Team
 
-                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #C5C7D3; margin-bottom:24px;")
+                table(width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #C5C7D3; margin-bottom:16px;")
                   tr
                     td
 
@@ -150,19 +152,26 @@ html
                   tr
                     td(style="text-align:center; color:#8D91A6; font-weight:600; font-size:10px;")
                       | Please do not reply, as this email was generated by an automated system.
-
             tr
-              td(style="background-color:#1E2657; padding:16px 24px; text-align:center; font-size:10px; color:#F9F9FC;")
+              td(style="background-color:#1E2657; padding:16px 24px; font-size:10px; color:#F9F9FC;")
                 table(width="100%" border="0" cellspacing="0" cellpadding="0")
                   tr
                     td(style="padding-bottom:16px;")
-                      | © 2025 Nipa Technology Co., Ltd., All Rights Reserved.
-                  tr
-                    td(style="padding-bottom:16px;")
-                      | NIPA Cloud does not request any personal information, such as a username or password. 
-                      | If you are asked to provide such information, please decline and inform us for your safety.
+                      img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" width="112" height="28" style="display:block; width:112px; height: 28px")
                   tr
                     td
-                      a(href="https://nipa.cloud/privacy" title="Privacy Policy" target="_blank" style="color:#F9F9FC; text-decoration:none;") Privacy Policy
-                      |  |
-                      a(href="https://nipa.cloud/terms" title="Terms of Service" target="_blank" style="color:#F9F9FC; text-decoration:none;")  Terms of Service
+                      | NIPA Cloud does not request any personal information, such as a username or password. 
+                  tr  
+                    td(style="padding-bottom:16px;")
+                      | If you are asked to provide such information, please do not respond and immediately notify the Nipa Cloud team at 
+                      a(href="mailto:support@nipa.cloud" title="mailto:support@nipa.cloud" style="color:#F9F9FC;") support@nipa.cloud
+                  table(width="100%" border="0" cellspacing="0" cellpadding="0")
+                    tr
+                      td(style="text-align:left; white-space:nowrap;")
+                        a(href="https://nipa.cloud/contact/technical" title="Customer Support" target="_blank" style="color:#C5C7D3; text-decoration:none;") Customer Support
+                        |  |
+                        a(href="https://nipa.cloud/privacy" title="Privacy Policy" target="_blank" style="color:#C5C7D3; text-decoration:none;")  Privacy Policy
+                        |  |
+                        a(href="https://nipa.cloud/terms" title="Terms of Service" target="_blank" style="color:#C5C7D3; text-decoration:none;")  Terms of Service
+                      td(style="text-align:right; white-space:nowrap; color:#C5C7D3;") 
+                        | © 2025 Nipa Technology Co., Ltd., All Rights Reserved.
