@@ -34,7 +34,7 @@ html
                 table(border="0" cellspacing="0" cellpadding="0" style="padding-bottom:12px;")
                   tr
                     td
-                      img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" width="208" height="52" style="display:block; width:208px; height: 52px")
+                      img(src=logo alt="logo" title="logo" width="208" height="52" style="display:block; width:208px; height: 52px")
 
                 table(width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top:12px; padding-bottom:16px;")
                   tr
@@ -64,16 +64,18 @@ html
                       td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_name}
                         span(style="color:#8D91A6;")  (#{capitalizeFirstLetter(wallet_type)})    
-                    tr
-                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Project ID
-                      td(style="padding-bottom:8px; padding-left:4px;")
-                        | : #{project_id}
+                    tr(onclick="navigator.clipboard.writeText('#{project_id}')")
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;")
+                      td(style="padding-bottom:8px; padding-left:4px; cursor:pointer;")
+                        span(style="color:#232C65;")
+                          | &nbsp;&nbsp;#{project_id}
+                          img(src="https://space.nipa.cloud/assets/images/Copy-icon.png" alt="copy-icon" title="copy-icon" width="13.33" height="13.33" style="width:13.33px; height:13.33px; cursor:pointer;")
                     tr
                       - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                       td(style="width:144px; font-weight:600;") Outstanding Balance
                       if outstanding_amount && outstanding_amount > 0
                         td(style="padding-left:4px;")
-                          | : #{outStandingBalanceDisplay} THC
+                          | : #{outStandingBalanceDisplay} THB
                       else
                         td(style="padding-left:4px;")
                           | : -
@@ -157,7 +159,7 @@ html
                 table(width="100%" border="0" cellspacing="0" cellpadding="0")
                   tr
                     td(style="padding-bottom:16px;")
-                      img(src=logo alt="Nipa Cloud Logo" title="Nipa Cloud Logo" width="112" height="28" style="display:block; width:112px; height: 28px")
+                      img(src=logo_footer alt="footer-logo" title="footer-logo" width="112" height="28" style="display:block; width:112px; height: 28px")
                   tr
                     td
                       | NIPA Cloud does not request any personal information, such as a username or password. 

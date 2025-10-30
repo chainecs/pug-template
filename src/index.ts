@@ -33,6 +33,7 @@ app.set("view engine", "pug");
 app.get("/", (req, res) => {
   res.render("index", {
     logo: `${process.env.LOGO_URL}`,
+    logo_footer: `${process.env.LOGO_FOOTER_URL}`,
     recipient_name: "John Doe",
     wallet_type: "POSTPAID",
     cycle_started_at: "01 JAN 25",
@@ -66,6 +67,7 @@ app.get("/send", async (req, res) => {
       data: {
         subject: `Cycle Report - 01 JAN 25 - 31 FEB 25`,
         logo: `${process.env.LOGO_URL}`,
+        logo_footer: `${process.env.LOGO_FOOTER_URL}`,
         recipient_name: "John Doe",
         wallet_type: "POSTPAID",
         cycle_started_at: "01 JAN 25",
