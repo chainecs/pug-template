@@ -16,7 +16,7 @@ html
 
       .link-font {
         color: #4959D1;
-        font-weight: 600;
+        font-weight: 400;
       }
 
     - function capitalizeFirstLetter(string) {
@@ -64,12 +64,10 @@ html
                       td(style="padding-bottom:8px; padding-left:4px;")
                         | : #{project_name}
                         span(style="color:#8D91A6;")  (#{capitalizeFirstLetter(wallet_type)})    
-                    tr(onclick="navigator.clipboard.writeText('#{project_id}')")
-                      td(style="width:144px; font-weight:600; padding-bottom:8px;")
-                      td(style="padding-bottom:8px; padding-left:4px; cursor:pointer;")
-                        span(style="color:#232C65;")
-                          | &nbsp;&nbsp;#{project_id}
-                          img(src="https://space.nipa.cloud/assets/images/Copy-icon.png" alt="copy-icon" title="copy-icon" width="13.33" height="13.33" style="width:13.33px; height:13.33px; cursor:pointer;")
+                    tr
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Project ID
+                      td(style="padding-bottom:8px; padding-left:4px;")
+                        | : #{project_id}
                     tr
                       - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                       td(style="width:144px; font-weight:600;") Outstanding Balance
@@ -106,7 +104,7 @@ html
                         td(style="padding:8px 0;") VAT 7%
                         td(style="padding:8px 0; text-align:right;") #{vatDisplay} THB
 
-                      tr
+                      tr(style="font-weight:600;")
                         - var grandTotalDisplay = (Math.ceil(grand_total/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                         td(style="padding-top: 8px;") Grand Total
                         td(style="padding-top: 8px; text-align:right;") #{grandTotalDisplay} THB

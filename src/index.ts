@@ -65,7 +65,7 @@ app.get("/send", async (req, res) => {
         ],
       },
       data: {
-        subject: `Cycle Report - 01 JAN 25 - 31 FEB 25`,
+        subject: `Billing & Wallet | Cycle Report - 01 JAN 25 - 31 FEB 25`,
         logo: `${process.env.LOGO_URL}`,
         logo_footer: `${process.env.LOGO_FOOTER_URL}`,
         recipient_name: "John Doe",
