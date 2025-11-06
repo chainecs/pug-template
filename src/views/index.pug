@@ -68,9 +68,9 @@ html
                         | : #{project_name}
                         span(style="color:#8D91A6;")  (#{capitalizeFirstLetter(wallet_type)})    
                     tr
-                      td(style="width:144px; font-weight:600; padding-bottom:8px;") Project ID
-                      td(style="padding-bottom:8px; padding-left:4px;")
-                        | : #{project_id}
+                      td(style="width:144px; font-weight:600; padding-bottom:8px;")
+                      td(style="padding-bottom:8px; padding-left:4px; color:#8D91A6;")
+                        | &nbsp; #{project_id}
                     tr
                       - var outStandingBalanceDisplay = (Math.ceil(outstanding_amount/10000)/100).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})
                       td(style="width:144px; font-weight:600;") Outstanding Balance
